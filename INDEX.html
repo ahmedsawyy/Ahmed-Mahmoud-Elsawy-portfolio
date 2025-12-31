@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ahmed Mahmoud Elsawy | DevOps Engineer Trainee</title>
+  <meta name="description" content="Ahmed Mahmoud Elsawy — DevOps Engineer Trainee. Cloud & DevOps (AWS, Linux, Docker, Kubernetes, CI/CD, IaC)." />
+
+  <style>
+    :root{
+      --bg: #0b1220; /* simple + luxury */
+      --panel:#0f172a;
+      --panel2:#0b1020;
+      --text:#e5e7eb;
+      --muted:#94a3b8;
+      --border:#243044;
+      --accent:#38bdf8;
+      --accent2:#a78bfa;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+    [data-theme="light"]{
+      --bg:#f7fafc;
+      --panel:#ffffff;
+      --panel2:#f1f5f9;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:#e2e8f0;
+      --accent:#0284c7;
+      --accent2:#7c3aed;
+      --shadow: 0 10px 25px rgba(2,6,23,.12);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans Arabic", "Noto Sans", sans-serif;
+      background: radial-gradient(1000px 500px at 80% -10%, rgba(56,189,248,.12), transparent 60%),
+                  radial-gradient(800px 480px at 10% 10%, rgba(167,139,250,.10), transparent 55%),
+                  linear-gradient(180deg, rgba(255,255,255,.02), transparent 30%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.75;
+    }
+
+    a{color:inherit}
+    .container{max-width:1100px; margin:0 auto; padding:0 18px;}
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: color-mix(in oklab, var(--bg) 75%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 0;}
+
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+    .logo{
+      width:40px; height:40px; border-radius:14px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: var(--shadow);
+    }
+    .brand strong{font-size:14px; display:block; line-height:1.2}
+    .brand span{font-size:12px; color:var(--muted)}
+
+    .nav{display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:center;}
+    .nav a{
+      text-decoration:none;
+      font-size:13px;
+      color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+    }
+    .nav a:hover{color:var(--text); border-color:var(--border); background: color-mix(in oklab, var(--panel) 70%, transparent);}
+    .nav a.active{color:var(--text); border-color: color-mix(in oklab, var(--accent) 40%, var(--border));}
+
+    .actions{display:flex; gap:10px; align-items:center;}
+
+    .btn{
+      border:1px solid var(--border);
+      background: color-mix(in oklab, var(--panel) 85%, transparent);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:12px;
+      cursor:pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      font-size:13px;
+      display:inline-flex; align-items:center; gap:8px;
+      text-decoration:none;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); border-color: color-mix(in oklab, var(--accent) 40%, var(--border));}
+    .btn.primary{
+      border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
+      background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 40%, var(--panel)), color-mix(in oklab, var(--accent2) 30%, var(--panel)));
+    }
+
+    /* Hero */
+    .hero{padding:52px 0 26px;}
+    .hero-grid{
+      display:grid; gap:18px;
+      grid-template-columns: 1.25fr .75fr;
+      align-items:stretch;
+    }
+
+    .card{
+      background: color-mix(in oklab, var(--panel) 92%, transparent);
+      border:1px solid color-mix(in oklab, var(--border) 92%, transparent);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main{padding:26px; position:relative; overflow:hidden;}
+    .hero-main:before{
+      content:"";
+      position:absolute;
+      inset:-80px -80px auto auto;
+      width:320px; height:320px;
+      background: radial-gradient(circle at 30% 30%, rgba(56,189,248,.35), transparent 60%);
+      opacity:.9;
+      pointer-events:none;
+    }
+
+    .kicker{color:var(--muted); font-size:14px; margin:0 0 10px;}
+    h1{margin:0 0 10px; font-size:34px; letter-spacing:.2px; line-height:1.25;}
+    .subtitle{margin:0 0 16px; color:var(--muted); max-width:72ch}
+
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+    .chip{
+      font-size:12px;
+      color: color-mix(in oklab, var(--text) 85%, var(--muted));
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: color-mix(in oklab, var(--panel2) 70%, transparent);
+    }
+
+    .hero-cta{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;}
+
+    .hero-side{padding:18px; display:grid; gap:12px;}
+    .mini{
+      padding:14px;
+      border-radius: 16px;
+      border:1px solid var(--border);
+      background: color-mix(in oklab, var(--panel2) 70%, transparent);
+    }
+    .mini h3{margin:0 0 6px; font-size:14px}
+    .mini p{margin:0; color:var(--muted); font-size:13px}
+
+    /* Sections */
+    section{padding:28px 0;}
+    .section-title{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:14px;}
+    .section-title h2{margin:0; font-size:22px;}
+    .section-title p{margin:0; color:var(--muted); font-size:13px}
+
+    .grid-2{display:grid; gap:14px; grid-template-columns: 1fr 1fr;}
+
+    .item{padding:16px; border:1px solid var(--border); border-radius:16px; background: color-mix(in oklab, var(--panel2) 70%, transparent);}
+    .item h3{margin:0 0 6px; font-size:15px}
+    .item p{margin:0; color:var(--muted); font-size:13px}
+
+    /* Skills */
+    .skill-grid{display:grid; gap:12px; grid-template-columns: repeat(2, 1fr);}
+    .skill{padding:16px; border-radius:16px; border:1px solid var(--border); background: color-mix(in oklab, var(--panel2) 72%, transparent);}
+    .skill b{display:block; margin-bottom:6px; font-size:14px}
+    .skill small{color:var(--muted)}
+
+    /* Projects */
+    .projects{display:grid; gap:14px; grid-template-columns: repeat(2, 1fr);}
+    .project{padding:18px;}
+    .project h3{margin:0 0 6px; font-size:16px}
+    .project p{margin:0 0 10px; color:var(--muted); font-size:13px}
+    .project ul{margin:10px 0 0; padding-inline-start: 18px; color:var(--muted); font-size:13px}
+    .project li{margin:6px 0}
+    .project .meta{display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 14px;}
+    .project .meta span{font-size:12px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background: color-mix(in oklab, var(--panel2) 75%, transparent)}
+    .project .links{display:flex; flex-wrap:wrap; gap:10px;}
+
+    /* Timeline */
+    .timeline{display:grid; gap:10px;}
+    .tl{display:grid; grid-template-columns: 150px 1fr; gap:12px; align-items:start; padding:14px; border:1px solid var(--border); border-radius:16px; background: color-mix(in oklab, var(--panel2) 70%, transparent);}
+    .tl time{font-size:12px; color:var(--muted)}
+    .tl b{display:block; font-size:14px; margin-top:2px}
+    .tl p{margin:6px 0 0; color:var(--muted); font-size:13px}
+    .tl ul{margin:8px 0 0; padding-inline-start: 18px; color:var(--muted); font-size:13px}
+    .tl li{margin:6px 0}
+
+    /* Contact */
+    .contact{display:grid; gap:14px; grid-template-columns: 1fr 1fr;}
+
+    .field{display:grid; gap:6px; margin-bottom:10px;}
+    label{font-size:12px; color:var(--muted)}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: color-mix(in oklab, var(--panel2) 78%, transparent);
+      color:var(--text);
+      outline:none;
+    }
+    input:focus, textarea:focus{border-color: color-mix(in oklab, var(--accent) 55%, var(--border));}
+    textarea{min-height:120px; resize:vertical}
+
+    .social{display:flex; flex-wrap:wrap; gap:10px;}
+
+    footer{padding:26px 0 40px; color:var(--muted); text-align:center; border-top:1px solid var(--border); margin-top:18px}
+
+    /* Back to top */
+    .toTop{position:fixed; left:18px; bottom:18px; opacity:0; pointer-events:none; transform: translateY(10px); transition: .18s ease;}
+    .toTop.show{opacity:1; pointer-events:auto; transform: translateY(0)}
+
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns: 1fr;}
+      .projects{grid-template-columns: 1fr;}
+      .skill-grid{grid-template-columns: 1fr;}
+      .grid-2{grid-template-columns: 1fr;}
+      .contact{grid-template-columns: 1fr;}
+      .tl{grid-template-columns: 1fr;}
+    }
+    @media (max-width: 520px){
+      h1{font-size:28px}
+      .nav{display:none}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <a class="brand" href="#top" aria-label="Home">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <strong>Ahmed Mahmoud Elsawy</strong>
+          <span>DevOps Engineer Trainee • Egypt</span>
+        </div>
+      </a>
+
+      <nav class="nav" aria-label="Navigation">
+        <a href="#about">نبذة</a>
+        <a href="#skills">المهارات</a>
+        <a href="#projects">المشاريع</a>
+        <a href="#experience">التدريب</a>
+        <a href="#education">التعليم</a>
+        <a href="#certs">الشهادات</a>
+        <a href="#contact">تواصل</a>
+      </nav>
+
+      <div class="actions">
+        <button class="btn" id="themeBtn" type="button" title="تبديل الوضع">🌗 <span>Theme</span></button>
+        <a class="btn primary" href="#contact">تواصل الآن</a>
+      </div>
+    </div>
+  </div>
+
+  <main id="top">
+    <div class="container">
+
+      <!-- HERO -->
+      <div class="hero">
+        <div class="hero-grid">
+          <div class="card hero-main">
+            <p class="kicker">👋 أهلاً! أنا</p>
+            <h1>Ahmed Mahmoud Elsawy</h1>
+            <p class="subtitle">
+              <b>DevOps Engineer Trainee</b> — Computer & Artificial Intelligence student with hands‑on experience in
+              Cloud and DevOps technologies including <b>AWS, Linux, Docker, Kubernetes, CI/CD</b>, and infrastructure automation.
+              Strong foundation in networking, system administration, and programming, with project-based experience and
+              focus on Cloud/DevOps engineering roles.
+            </p>
+
+            <div class="hero-cta">
+              <a class="btn primary" href="#projects">شوف المشاريع</a>
+              <a class="btn" href="#" id="cvBtn">⬇️ Download CV (ضع رابط PDF)</a>
+              <a class="btn" href="mailto:ahmedmahmoudelsawysabra@gmail.com">✉️ Email</a>
+              <a class="btn" href="tel:+201142619952">📞 +20 114 261 9952</a>
+            </div>
+
+            <div class="chips" aria-label="Highlights">
+              <span class="chip">AWS</span>
+              <span class="chip">Linux</span>
+              <span class="chip">Docker</span>
+              <span class="chip">Kubernetes</span>
+              <span class="chip">Jenkins</span>
+              <span class="chip">Terraform</span>
+              <span class="chip">Ansible</span>
+              <span class="chip">Prometheus</span>
+            </div>
+          </div>
+
+          <div class="card hero-side">
+            <div class="mini">
+              <h3>📍 الموقع</h3>
+              <p>El Sheikh Zaid, Al Jizah, Egypt</p>
+            </div>
+            <div class="mini">
+              <h3>🔗 روابط (حدّثها)</h3>
+              <p style="margin-bottom:10px">ضع روابطك الحقيقية بدل #</p>
+              <div class="social">
+                <a class="btn" href="https://www.linkedin.com/in/ahmed-mahmoud-elsawy/" id="lnkLinkedIn" target="_blank" rel="noopener">LinkedIn</a>
+                <a class="btn" href="https://github.com/ahmedsawyy/ahmed-sawyy1" id="lnkGitHub" target="_blank" rel="noopener">GitHub</a>
+                <a class="btn" href="https://codeforces.com/profile/Ahmedelsawy_236" id="lnkCodeforces" target="_blank" rel="noopener">Codeforces</a>
+                <a class="btn" href="https://leetcode.com/u/ahmedmahmoudelsawy/" id="lnkLeetCode" target="_blank" rel="noopener">LeetCode</a>
+              </div>
+            </div>
+            <div class="mini">
+              <h3>🎯 الهدف</h3>
+              <p>Intern / Junior DevOps • Cloud Trainee • SRE Intern</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ABOUT -->
+      <section id="about">
+        <div class="section-title">
+          <div>
+            <h2>نبذة</h2>
+            <p>ملخص مبني من الـ CV</p>
+          </div>
+          <p>آخر تحديث: <span id="lastUpdated"></span></p>
+        </div>
+
+        <div class="grid-2">
+          <div class="item">
+            <h3>Profile</h3>
+            <p>
+              Computer and Artificial Intelligence student with hands‑on experience in Cloud and DevOps technologies including AWS,
+              Linux, Docker, Kubernetes, CI/CD, and infrastructure automation. Strong foundation in networking, system administration,
+              and programming, with project-based experience and clear focus on Cloud/DevOps engineering roles.
+            </p>
+          </div>
+          <div class="item">
+            <h3>أهم النقاط</h3>
+            <p>
+              CI/CD Pipelines • Containerization & Deployment • IaC (Terraform/Ansible) • Monitoring/Observability (Prometheus) •
+              AWS Fundamentals • Linux Administration.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills">
+        <div class="section-title">
+          <div>
+            <h2>المهارات</h2>
+            <p>كما هي في الـ CV</p>
+          </div>
+          <p>قابلة للتعديل</p>
+        </div>
+
+        <div class="skill-grid">
+          <div class="skill"><b>Networking & Infrastructure</b><small>TCP/IP, DNS, HTTP/HTTPS, Firewalls, Load Balancing, Virtualization</small></div>
+          <div class="skill"><b>Operating Systems & Administration</b><small>Linux (RHEL, Ubuntu), Bash Scripting, System Administration</small></div>
+          <div class="skill"><b>Cloud & DevOps</b><small>AWS, Terraform, Docker, Kubernetes, Jenkins, CI/CD, Ansible, Prometheus</small></div>
+          <div class="skill"><b>Programming & Databases</b><small>Python, C/C++, SQL, OOP</small></div>
+          <div class="skill"><b>Version Control & Tools</b><small>Git, GitHub, Linux CLI</small></div>
+          <div class="skill"><b>Languages</b><small>English (Proficient), German (Conversational), Arabic (Native)</small></div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects">
+        <div class="section-title">
+          <div>
+            <h2>المشاريع</h2>
+            <p>من الـ CV + جهّزت شكل عرض أحسن</p>
+          </div>
+          <p>ضع روابط GitHub بدل #</p>
+        </div>
+
+        <div class="projects">
+          <div class="card project">
+            <h3>Daily Dua Web Application (AWS Project)</h3>
+            <p>Cloud-hosted web application that displays a daily Islamic supplication with a clean UI and dark mode.</p>
+            <div class="meta">
+              <span>AWS EC2</span><span>Apache</span><span>Linux</span><span>HTML/CSS/JS</span><span>User Data</span>
+            </div>
+            <ul>
+              <li>Provisioned and managed an AWS EC2 instance with network configuration and Security Groups.</li>
+              <li>Configured Apache to host and serve the application.</li>
+              <li>Built a responsive frontend using HTML, CSS, and JavaScript.</li>
+              <li>Automated setup & deployment using AWS User Data scripts.</li>
+            </ul>
+            <div class="links">
+              <a class="btn" href="#">🔗 GitHub Repo</a>
+              <a class="btn" href="#">📄 Documentation</a>
+              <a class="btn" href="#">🌐 Live Demo</a>
+            </div>
+          </div>
+
+          <div class="card project">
+            <h3>Own Instagram on AWS</h3>
+            <p>Deploy a full‑stack app on AWS Elastic Beanstalk with image upload & filtering workflow.</p>
+            <div class="meta">
+              <span>AWS</span><span>Elastic Beanstalk</span><span>S3</span>
+            </div>
+            <ul>
+              <li>Deployed a full‑stack application on Elastic Beanstalk.</li>
+              <li>Implemented image upload to an S3 bucket and applied filtering logic.</li>
+            </ul>
+            <div class="links">
+              <a class="btn" href="#">🔗 GitHub Repo</a>
+              <a class="btn" href="#">🧪 How to Run</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRAINING / EXPERIENCE -->
+      <section id="experience">
+        <div class="section-title">
+          <div>
+            <h2>التدريب والخبرة العملية</h2>
+            <p>Training & Practical Experience</p>
+          </div>
+          <p>Timeline</p>
+        </div>
+
+        <div class="timeline">
+          <div class="tl">
+            <div>
+              <time>Nov 2025 – Present</time>
+              <b>DEPI</b>
+            </div>
+            <div>
+              <b>DevOps Engineer Trainee — Digital Egypt Pioneers Initiative (Hybrid, Alexandria)</b>
+              <ul>
+                <li>Designing and implementing CI/CD pipelines using Git, GitHub, Jenkins, and build tools.</li>
+                <li>Containerizing and deploying applications using Docker and Kubernetes.</li>
+                <li>Infrastructure configuration and automation using Ansible and Terraform.</li>
+                <li>Working with AWS services and applying cloud architecture design principles.</li>
+                <li>Implementing monitoring and observability using Prometheus.</li>
+                <li>Delivering a real‑world DevOps capstone project (graduation requirement).</li>
+              </ul>
+              <p><b>Technologies:</b> Linux, AWS, Docker, Kubernetes, Jenkins, Git/GitHub, Terraform, Ansible, Prometheus</p>
+            </div>
+          </div>
+
+          <div class="tl">
+            <div>
+              <time>Aug 2025 – Oct 2025</time>
+              <b>NTI</b>
+            </div>
+            <div>
+              <b>Cloud Engineer Trainee — National Telecommunication Institute (Remote, Cairo)</b>
+              <ul>
+                <li>Cloud Essentials: datacenter virtualization & public cloud fundamentals.</li>
+                <li>Hands‑on with AWS services (compute, storage, networking, security) + exposure to Huawei Cloud.</li>
+                <li>Studied cloud infrastructure design, resource management, and cloud‑native basics.</li>
+              </ul>
+              <p><b>Technologies:</b> AWS, Huawei Cloud, Virtualization, Cloud Infrastructure, Networking, Storage, Security</p>
+            </div>
+          </div>
+
+          <div class="tl">
+            <div>
+              <time>Jul 2025 – Oct 2025</time>
+              <b>ITI</b>
+            </div>
+            <div>
+              <b>Linux Administrator Trainee — Information Technology Institute (Suhaj)</b>
+              <ul>
+                <li>Trained on Red Hat System Administration I & II (RHCSA – Admin I & II).</li>
+                <li>Linux server administration on RHEL and Ubuntu/Debian.</li>
+                <li>System configuration, user/group management, permissions/ACLs.</li>
+                <li>Services: systemd, SSH, firewalld, basic networking tools.</li>
+                <li>Storage: partitions, LVM, disk monitoring.</li>
+                <li>Automated tasks using Bash scripting.</li>
+              </ul>
+              <p><b>Technologies:</b> Linux (RHEL, Ubuntu), Bash, systemd, SSH, LVM, firewalld</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EDUCATION -->
+      <section id="education">
+        <div class="section-title">
+          <div>
+            <h2>التعليم</h2>
+            <p>Education</p>
+          </div>
+          <p>الجامعة + المواد</p>
+        </div>
+
+        <div class="card" style="padding:18px">
+          <h3 style="margin:0 0 8px">Bachelor’s Degree in Computer Science & Artificial Intelligence — Sohag University</h3>
+          <p style="margin:0; color:var(--muted)">Faculty of Computers and Artificial Intelligence, Sohag, Egypt • Aug 2024 – Present</p>
+          <p style="margin:10px 0 0; color:var(--muted)"><b>Relevant Coursework:</b> OOP, Data Structures & Algorithms, Operating Systems, Computer Networks, Database Systems (SQL), Linux Systems, Software Engineering, Cloud Computing & Virtualization, Information Security Fundamentals.</p>
+        </div>
+      </section>
+
+      <!-- CERTIFICATES -->
+      <section id="certs">
+        <div class="section-title">
+          <div>
+            <h2>الشهادات</h2>
+            <p>Certificates</p>
+          </div>
+          <p>أضف الروابط لو موجودة</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="item">
+            <h3>AWS Academy Graduate — AWS Academy Cloud Foundations</h3>
+            <p>Skills: AWS Architect, AWS Elastic Beanstalk, AWS CLI, Solution Architecture, CloudFormation, Lambda, IAM…</p>
+          </div>
+          <div class="item">
+            <h3>CCNA (Cisco Certified Network Associate) — Udemy</h3>
+            <p>Skills: Subnetting, Switching, Routing, Protocols (RIP/OSPF/EIGRP), Network Security, Packet Tracer, Troubleshooting.</p>
+          </div>
+          <div class="item">
+            <h3>Introduction to IoT — Value Chain (MaharaTech / ITIMooca)</h3>
+            <p>IoT fundamentals, connectivity, data processing, cloud integration, edge computing, and real-world applications.</p>
+          </div>
+          <div class="item">
+            <h3>Volunteering — Student Ambassador (iCareer, Sohag)</h3>
+            <p>Sep 2025 – Present</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact">
+        <div class="section-title">
+          <div>
+            <h2>تواصل</h2>
+            <p>Contact</p>
+          </div>
+          <p>ممكن تبعت رسالة مباشرة</p>
+        </div>
+
+        <div class="contact">
+          <div class="card" style="padding:18px">
+            <h3 style="margin:0 0 10px">روابط وبيانات</h3>
+            <div class="social">
+              <a class="btn" href="mailto:ahmedmahmoudelsawysabra@gmail.com">✉️ ahmedmahmoudelsawysabra@gmail.com</a>
+              <a class="btn" href="tel:+201142619952">📞 +20 114 261 9952</a>
+              <a class="btn" href="https://github.com/ahmedsawyy/ahmed-sawyy1" target="_blank" rel="noopener">🐙 GitHub</a>
+              <a class="btn" href="https://www.linkedin.com/in/ahmed-mahmoud-elsawy/" target="_blank" rel="noopener">💼 LinkedIn</a>
+              <a class="btn" href="#" id="cvBtn2">🧾 CV (ضع رابط PDF)</a>
+              <a class="btn" href="https://leetcode.com/u/ahmedmahmoudelsawy/" target="_blank" rel="noopener">🧩 LeetCode</a>
+              <a class="btn" href="https://codeforces.com/profile/Ahmedelsawy_236" target="_blank" rel="noopener">🏁 Codeforces</a>
+            </div>
+            <p style="margin:12px 0 0; color:var(--muted); font-size:13px">
+              ملاحظة: علشان الصفحة تبقى قوية، حط لكل مشروع: README + صور + خطوات تشغيل.
+            </p>
+          </div>
+
+          <div class="card" style="padding:18px">
+            <h3 style="margin:0 0 10px">رسالة سريعة</h3>
+            <form id="contactForm">
+              <div class="field">
+                <label for="name">الاسم</label>
+                <input id="name" name="name" placeholder="اسمك" required />
+              </div>
+              <div class="field">
+                <label for="email">البريد</label>
+                <input id="email" name="email" type="email" placeholder="example@mail.com" required />
+              </div>
+              <div class="field">
+                <label for="msg">الرسالة</label>
+                <textarea id="msg" name="msg" placeholder="اكتب رسالتك..." required></textarea>
+              </div>
+              <button class="btn primary" type="submit">إرسال</button>
+              <p id="formHint" style="margin:10px 0 0; color:var(--muted); font-size:12px"></p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="container">
+          <p style="margin:0">© <span id="year"></span> Ahmed Mahmoud Elsawy — Built with ❤️</p>
+          <p style="margin:8px 0 0; font-size:12px">Single‑file HTML/CSS/JS — easy to publish on GitHub Pages</p>
+        </div>
+      </footer>
+
+    </div>
+  </main>
+
+  <div class="toTop" id="toTop">
+    <button class="btn" type="button" onclick="window.scrollTo({top:0, behavior:'smooth'})">⬆️ أعلى الصفحة</button>
+  </div>
+
+  <script>
+    // Theme toggle (saved)
+    const themeBtn = document.getElementById('themeBtn');
+    const savedTheme = localStorage.getItem('theme');
+    if(savedTheme){ document.documentElement.setAttribute('data-theme', savedTheme); }
+    function toggleTheme(){
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      localStorage.setItem('theme', next);
+    }
+    themeBtn.addEventListener('click', toggleTheme);
+
+    // Active nav based on scroll
+    const sections = ['about','skills','projects','experience','education','certs','contact'].map(id => document.getElementById(id));
+    const navLinks = Array.from(document.querySelectorAll('.nav a'));
+    function setActive(){
+      let currentId = 'about';
+      for(const s of sections){
+        if(!s) continue;
+        const r = s.getBoundingClientRect();
+        if(r.top <= 120 && r.bottom >= 120){ currentId = s.id; break; }
+      }
+      navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + currentId));
+    }
+    window.addEventListener('scroll', setActive);
+    setActive();
+
+    // Back to top
+    const toTop = document.getElementById('toTop');
+    window.addEventListener('scroll', () => {
+      const show = window.scrollY > 500;
+      toTop.classList.toggle('show', show);
+    });
+
+    // Contact form -> mailto (client-side only)
+    const form = document.getElementById('contactForm');
+    const hint = document.getElementById('formHint');
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('msg').value.trim();
+
+      const subject = encodeURIComponent('Portfolio Contact from ' + name);
+      const body = encodeURIComponent(`Name: ${name}
+Email: ${email}
+
+Message:
+${msg}`);
+
+      hint.textContent = 'سيتم فتح تطبيق البريد لإرسال الرسالة…';
+      window.location.href = `mailto:ahmedmahmoudelsawysabra@gmail.com?subject=${subject}&body=${body}`;
+      setTimeout(()=> hint.textContent = 'لو البريد ما اتفتحش: انسخ الرسالة وابعتها على الإيميل مباشرة.', 800);
+    });
+
+    // Footer year + last updated
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.getElementById('lastUpdated').textContent = new Date().toLocaleDateString('ar-EG', {year:'numeric', month:'long', day:'numeric'});
+
+    // CV placeholder alerts
+    function cvAlert(e){
+      const href = e.currentTarget.getAttribute('href');
+      if(href === '#'){
+        e.preventDefault();
+        alert('ضع رابط الـ CV (PDF) بدل # — مثال: ارفع PDF على GitHub repo أو Google Drive (public) وحط الرابط هنا.');
+      }
+    }
+    const cvBtn = document.getElementById('cvBtn');
+    const cvBtn2 = document.getElementById('cvBtn2');
+    if(cvBtn) cvBtn.addEventListener('click', cvAlert);
+    if(cvBtn2) cvBtn2.addEventListener('click', cvAlert);
+
+    // Social links placeholder alerts
+    ['lnkLinkedIn','lnkGitHub','lnkCodeforces'].forEach(id => {
+      const el = document.getElementById(id);
+      if(!el) return;
+      el.addEventListener('click', (e) => {
+        if(el.getAttribute('href') === '#'){
+          e.preventDefault();
+          alert('بدّل # برابطك الحقيقي في HTML (LinkedIn/GitHub/Codeforces).');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
